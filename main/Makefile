@@ -8,22 +8,22 @@ classpathoption =   # nothing if already installed
 
 antlr4 = java $(classpathoption) org.antlr.v4.Tool
 grun   = java $(classpathoption) org.antlr.v4.gui.TestRig
-GENERATED = mainParser.java mainLexer.java mainBaseVisitor.java mainVisitor.java mainBaseListener.java mainListener.java
+GENERATED = HDL0Parser.java HDL0Lexer.java HDL0BaseVisitor.java HDL0Visitor.java HDL0BaseListener.java HDL0Listener.java
 
 all:	
 	make run
 
-mainLexer.java:	main.g4
-	$(antlr4) -visitor main.g4
+HDL0Lexer.java:	HDL0.g4
+	$(antlr4) -visitor HDL0.g4
 
-main.class:	mainLexer.java main.java
+main.class:	HDL0Lexer.java main.java
 	javac $(classpathoption) $(GENERATED) main.java
 
 run:	main.class
 	java $(classpathoption) main helloworld.hw
 
-grun:	mainLexer.class helloworld.hw
+grun:	HDL0Lexer.class helloworld.hw
 	$(grun) main start -gui -tokens helloworld.hw
 
 clean:
-	rm $(GENERATED) *.class main.interp mainLexer.interp mainLexer.tokens
+	rm $(GENERATED) *.class HDL0.interp HDL0Lexer.interp HDL0Lexer.tokens

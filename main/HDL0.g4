@@ -1,4 +1,4 @@
-grammar main;
+grammar HDL0;
 
 start : (hardware input output latches update simulate) EOF # Begin;
 

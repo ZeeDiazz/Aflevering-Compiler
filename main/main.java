@@ -1,135 +1,165 @@
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
 
-	// we expect exactly one argument: the name of the input file
-	if (args.length!=1) {
-	    System.err.println("\n");
-	    System.err.println("Impl Interpreter\n");
-	    System.err.println("=================\n\n");
-	    System.err.println("Please give as input argument a filename\n");
-	    System.exit(-1);
-	}
-	String filename=args[0];
+        // we expect exactly one argument: the name of the input file
+        if (args.length != 1) {
+            System.err.println("\n");
+            System.err.println("Impl Interpreter\n");
+            System.err.println("=================\n\n");
+            System.err.println("Please give as input argument a filename\n");
+            System.exit(-1);
+        }
+        String filename = args[0];
 
-	// open the input file
-	CharStream input = CharStreams.fromFileName(filename);
-	    //new ANTLRFileStream (filename); // depricated
-	
-	// create a lexer/scanner
-	mainLexer lex = new mainLexer(input);
-	
-	// get the stream of tokens from the scanner
-	CommonTokenStream tokens = new CommonTokenStream(lex);
-	
-	// create a parser
-	mainParser parser = new mainParser(tokens);
-	
-	// and parse anything from the grammar for "start"
-	ParseTree parseTree = parser.start();
+        // open the input file
+        CharStream input = CharStreams.fromFileName(filename);
+        //new ANTLRFileStream (filename); // depricated
 
-	// Build the Abstract Syntax Tree (AST)
-	//ASTMaker astmaker = new ASTMaker();
-	//Program p=(Program)astmaker.visit(parseTree);
+        // create a lexer/scanner
+        HDL0Lexer lex = new HDL0Lexer(input);
 
-	System.out.println("Typechecking...");
-	//Environment env=new Environment();
-	//p.typecheck(env);
-	System.out.println("...ok. Running:");
-	//env=new Environment();
-	// For evaluation, create an empty environment and run eval:
-	//p.eval(env);
+        // get the stream of tokens from the scanner
+        CommonTokenStream tokens = new CommonTokenStream(lex);
+
+        // create a parser
+        HDL0Parser parser = new HDL0Parser(tokens);
+
+        // and parse anything from the grammar for "start"
+        ParseTree parseTree = parser.start();
+
+        // Build the Abstract Syntax Tree (AST)
+        prettyprint astmaker = new prettyprint();
+        String s = astmaker.visit(parseTree);
+        //ASTMaker astmaker = new ASTMaker();
+        //Program p=(Program)astmaker.visit(parseTree);
+
+        //Environment env=new Environment();
+        //p.typecheck(env);
+        //env=new Environment();
     }
 }
 
 /* Visitor that turns the ANTLR parse tree into more friendly abstract
  */
 
-class ASTMaker extends AbstractParseTreeVisitor<String> implements mainVisitor<String> {
-	@Override
-	public String visitBegin(mainParser.BeginContext ctx) {
+class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visitor<String> {
+    @Override
+    public String visitBegin(HDL0Parser.BeginContext ctx) {
+        System.out.println("<!DOCTYPE html>");
 
+        System.out.println("<html><head><title> " + ctx.hardware().stop.getText() + "</title");
 
+        System.out.println("<scriptsrc=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>" +
+                "<scripttype=\"text/javascript\"id=\"MathJax-script\"" +
+                "asyncsrc=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\">" +
+                "</script></head><body>");
+        return visitChildren(ctx);
+    }
 
-		return null;
-	}
+    @Override
+    public String visitHardwareProg(HDL0Parser.HardwareProgContext ctx) {
+        System.out.println("<h1>" + ctx.CIRCUITNAME().getText() + "</h1>");
+        return visitChildren(ctx);
+    }
 
-	@Override
-	public String visitHardwareProg(mainParser.HardwareProgContext ctx) {
-		return null;
-	}
+    @Override
+    public String visitIns(HDL0Parser.InsContext ctx) {
+        String test = ctx.start.getText();
 
-	@Override
-	public String visitIns(mainParser.InsContext ctx) {
-		return null;
-	}
+        if (test.contains(".")) {
+            test = ctx.start.getText().replace(".", "");
+        }
 
-	@Override
-	public String visitOuts(mainParser.OutsContext ctx) {
-		return null;
-	}
+        System.out.println("<h2>" + test + "</h2>");
 
-	@Override
-	public String visitLats(mainParser.LatsContext ctx) {
-		return null;
-	}
+        System.out.println(ctx.ins.getText());
+        return visitChildren(ctx);
+    }
 
-	@Override
-	public String visitUdt(mainParser.UdtContext ctx) {
-		return null;
-	}
+    @Override
+    public String visitOuts(HDL0Parser.OutsContext ctx) {
+        String test = ctx.start.getText();
 
-	@Override
-	public String visitSimp(mainParser.SimpContext ctx) {
-		return null;
-	}
+        if (test.contains(".")) {
+            test = ctx.start.getText().replace(".", "");
+        }
 
-	@Override
-	public String visitLat(mainParser.LatContext ctx) {
-		return null;
-	}
+        System.out.println("<h2>" + test + "</h2>");
 
-	@Override
-	public String visitAsstmt(mainParser.AsstmtContext ctx) {
-		return null;
-	}
+        System.out.println(ctx.outs.getText());
+        return visitChildren(ctx);
+    }
 
-	@Override
-	public String visitSstmt(mainParser.SstmtContext ctx) {
-		return null;
-	}
+    @Override
+    public String visitLats(HDL0Parser.LatsContext ctx) {
+        String test = ctx.start.getText();
 
-	@Override
-	public String visitCondition(mainParser.ConditionContext ctx) {
-		return null;
-	}
+        if (test.contains(".")) {
+            test = ctx.start.getText().replace(".", "");
+        }
 
-	@Override
-	public String visitVar(mainParser.VarContext ctx) {
-		return null;
-	}
+        System.out.println("<h2>" + test + "</h2>");
 
-	@Override
-	public String visitOG(mainParser.OGContext ctx) {
-		return null;
-	}
+        System.out.println(ctx.getStop().getText());
 
-	@Override
-	public String visitNegate(mainParser.NegateContext ctx) {
-		return null;
-	}
+        return visitChildren(ctx);
+    }
 
-	@Override
-	public String visitEller(mainParser.EllerContext ctx) {
-		return null;
-	}
+    @Override
+    public String visitUdt(HDL0Parser.UdtContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitSimp(HDL0Parser.SimpContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitLat(HDL0Parser.LatContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitAsstmt(HDL0Parser.AsstmtContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitSstmt(HDL0Parser.SstmtContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitCondition(HDL0Parser.ConditionContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitVar(HDL0Parser.VarContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitOG(HDL0Parser.OGContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitNegate(HDL0Parser.NegateContext ctx) {
+        return null;
+    }
+
+    @Override
+    public String visitEller(HDL0Parser.EllerContext ctx) {
+        return null;
+    }
     /*public AST visitStart(mainParser.StartContext ctx){
 	List<Program> ps = new ArrayList<Program>();
 	for (mainParser.StmtContext s : ctx.p )
