@@ -53,7 +53,7 @@ public class main {
  * syntax tree (AST). The return type <T> is AST, see AST.java
  */
 
-/*class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST> {
+class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST> {
     public AST visitStart(mainParser.StartContext ctx){
 	List<Program> ps = new ArrayList<Program>();
 	for (mainParser.StmtContext s : ctx.p )
@@ -108,6 +108,8 @@ public class main {
 	else return new Division((Exp) visit(ctx.e1), (Exp) visit(ctx.e2));
     };
     public AST visitVar(mainParser.VarContext ctx){
+
+
 	return new Variable(ctx.x.getText());
     };
     public AST visitConst(mainParser.ConstContext ctx){
@@ -120,5 +122,5 @@ public class main {
 	String s=ctx.f.getText();
 	return new ConstString(s.substring(1,s.length()-1));
     }
-}*/
+}
 

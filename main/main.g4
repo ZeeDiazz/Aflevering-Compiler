@@ -1,19 +1,19 @@
 grammar main;
 
-start : (hardware input output latches update simulate) EOF;
+start : (hardware input output latches update simulate) EOF # Begin;
 
-hardware : '.hardware ' CIRCUITNAME;
-input : '.inputs' (' '*? ins=ID)+;
-output : '.outputs' (' '*? ID)+;
-latches : '.latches' ' '*? latch+;
-update : '.update' ' '*? assignment_stmt+;
-simulate : '.simulate' ' '*? simulate_stmt+;
+hardware : '.hardware ' CIRCUITNAME # HardwareProg;
+input : '.inputs' (' '*? ins=ID)+   # Ins;
+output : '.outputs' (' '*? outs=ID)+    # Outs;
+latches : '.latches' ' '*? latch+   # Lats;
+update : '.update' ' '*? assignment_stmt+   # Udt;
+simulate : '.simulate' ' '*? simulate_stmt+ # Simp;
 
-latch : ID ' '* '->' ' '* ID;
+latch : lat1=ID ' '* '->' ' '* lat2=ID  # Lat;
 
-assignment_stmt : var=ID ' '* '=' ' '* expression;
+assignment_stmt : var=ID ' '* '=' ' '* expression   # Asstmt;
 
-simulate_stmt : var=ID ' '* '=' ' '* BINARY;
+simulate_stmt : var=ID ' '* '=' ' '* BINARY # Sstmt;
 
 expression : var=ID   # Var
            | '(' e=expression ')'   # Condition
@@ -28,4 +28,4 @@ CIRCUITNAME : [a-z]+;
 ID : [A-Z]+[A-Za-z0-9]+;
 BINARY : [01]+;
 
-WHITESPACE : [ \n\t] -> skip;
+WHITESPACE : [ \n\t]+ -> skip;
