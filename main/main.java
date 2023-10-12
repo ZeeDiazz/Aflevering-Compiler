@@ -52,8 +52,85 @@ public class main {
 /* Visitor that turns the ANTLR parse tree into more friendly abstract
  */
 
-/*class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST> {
-    public AST visitStart(mainParser.StartContext ctx){
+class ASTMaker extends AbstractParseTreeVisitor<String> implements mainVisitor<String> {
+	@Override
+	public String visitBegin(mainParser.BeginContext ctx) {
+
+
+
+		return null;
+	}
+
+	@Override
+	public String visitHardwareProg(mainParser.HardwareProgContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitIns(mainParser.InsContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitOuts(mainParser.OutsContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitLats(mainParser.LatsContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitUdt(mainParser.UdtContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitSimp(mainParser.SimpContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitLat(mainParser.LatContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitAsstmt(mainParser.AsstmtContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitSstmt(mainParser.SstmtContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitCondition(mainParser.ConditionContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitVar(mainParser.VarContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitOG(mainParser.OGContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitNegate(mainParser.NegateContext ctx) {
+		return null;
+	}
+
+	@Override
+	public String visitEller(mainParser.EllerContext ctx) {
+		return null;
+	}
+    /*public AST visitStart(mainParser.StartContext ctx){
 	List<Program> ps = new ArrayList<Program>();
 	for (mainParser.StmtContext s : ctx.p )
 	    ps.add((Program) visit(s));
@@ -120,6 +197,6 @@ public class main {
     public AST visitString(mainParser.StringContext ctx){
 	String s=ctx.f.getText();
 	return new ConstString(s.substring(1,s.length()-1));
-    }
-}*/
+    }*/
+}
 
