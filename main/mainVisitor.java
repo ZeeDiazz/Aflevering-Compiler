@@ -10,65 +10,75 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface mainVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link mainParser#start}.
+	 * Visit a parse tree produced by the {@code Begin}
+	 * labeled alternative in {@link mainParser#start}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStart(mainParser.StartContext ctx);
+	T visitBegin(mainParser.BeginContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#hardware}.
+	 * Visit a parse tree produced by the {@code HardwareProg}
+	 * labeled alternative in {@link mainParser#hardware}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitHardware(mainParser.HardwareContext ctx);
+	T visitHardwareProg(mainParser.HardwareProgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#input}.
+	 * Visit a parse tree produced by the {@code Ins}
+	 * labeled alternative in {@link mainParser#input}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInput(mainParser.InputContext ctx);
+	T visitIns(mainParser.InsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#output}.
+	 * Visit a parse tree produced by the {@code Outs}
+	 * labeled alternative in {@link mainParser#output}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOutput(mainParser.OutputContext ctx);
+	T visitOuts(mainParser.OutsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#latches}.
+	 * Visit a parse tree produced by the {@code Lats}
+	 * labeled alternative in {@link mainParser#latches}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLatches(mainParser.LatchesContext ctx);
+	T visitLats(mainParser.LatsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#update}.
+	 * Visit a parse tree produced by the {@code Udt}
+	 * labeled alternative in {@link mainParser#update}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUpdate(mainParser.UpdateContext ctx);
+	T visitUdt(mainParser.UdtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#simulate}.
+	 * Visit a parse tree produced by the {@code Simp}
+	 * labeled alternative in {@link mainParser#simulate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSimulate(mainParser.SimulateContext ctx);
+	T visitSimp(mainParser.SimpContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#latch}.
+	 * Visit a parse tree produced by the {@code Lat}
+	 * labeled alternative in {@link mainParser#latch}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLatch(mainParser.LatchContext ctx);
+	T visitLat(mainParser.LatContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#assignment_stmt}.
+	 * Visit a parse tree produced by the {@code Asstmt}
+	 * labeled alternative in {@link mainParser#assignment_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAssignment_stmt(mainParser.Assignment_stmtContext ctx);
+	T visitAsstmt(mainParser.AsstmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link mainParser#simulate_stmt}.
+	 * Visit a parse tree produced by the {@code Sstmt}
+	 * labeled alternative in {@link mainParser#simulate_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSimulate_stmt(mainParser.Simulate_stmtContext ctx);
+	T visitSstmt(mainParser.SstmtContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Condition}
 	 * labeled alternative in {@link mainParser#expression}.

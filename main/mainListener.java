@@ -7,105 +7,125 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface mainListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link mainParser#start}.
+	 * Enter a parse tree produced by the {@code Begin}
+	 * labeled alternative in {@link mainParser#start}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart(mainParser.StartContext ctx);
+	void enterBegin(mainParser.BeginContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#start}.
+	 * Exit a parse tree produced by the {@code Begin}
+	 * labeled alternative in {@link mainParser#start}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart(mainParser.StartContext ctx);
+	void exitBegin(mainParser.BeginContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#hardware}.
+	 * Enter a parse tree produced by the {@code HardwareProg}
+	 * labeled alternative in {@link mainParser#hardware}.
 	 * @param ctx the parse tree
 	 */
-	void enterHardware(mainParser.HardwareContext ctx);
+	void enterHardwareProg(mainParser.HardwareProgContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#hardware}.
+	 * Exit a parse tree produced by the {@code HardwareProg}
+	 * labeled alternative in {@link mainParser#hardware}.
 	 * @param ctx the parse tree
 	 */
-	void exitHardware(mainParser.HardwareContext ctx);
+	void exitHardwareProg(mainParser.HardwareProgContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#input}.
+	 * Enter a parse tree produced by the {@code Ins}
+	 * labeled alternative in {@link mainParser#input}.
 	 * @param ctx the parse tree
 	 */
-	void enterInput(mainParser.InputContext ctx);
+	void enterIns(mainParser.InsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#input}.
+	 * Exit a parse tree produced by the {@code Ins}
+	 * labeled alternative in {@link mainParser#input}.
 	 * @param ctx the parse tree
 	 */
-	void exitInput(mainParser.InputContext ctx);
+	void exitIns(mainParser.InsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#output}.
+	 * Enter a parse tree produced by the {@code Outs}
+	 * labeled alternative in {@link mainParser#output}.
 	 * @param ctx the parse tree
 	 */
-	void enterOutput(mainParser.OutputContext ctx);
+	void enterOuts(mainParser.OutsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#output}.
+	 * Exit a parse tree produced by the {@code Outs}
+	 * labeled alternative in {@link mainParser#output}.
 	 * @param ctx the parse tree
 	 */
-	void exitOutput(mainParser.OutputContext ctx);
+	void exitOuts(mainParser.OutsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#latches}.
+	 * Enter a parse tree produced by the {@code Lats}
+	 * labeled alternative in {@link mainParser#latches}.
 	 * @param ctx the parse tree
 	 */
-	void enterLatches(mainParser.LatchesContext ctx);
+	void enterLats(mainParser.LatsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#latches}.
+	 * Exit a parse tree produced by the {@code Lats}
+	 * labeled alternative in {@link mainParser#latches}.
 	 * @param ctx the parse tree
 	 */
-	void exitLatches(mainParser.LatchesContext ctx);
+	void exitLats(mainParser.LatsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#update}.
+	 * Enter a parse tree produced by the {@code Udt}
+	 * labeled alternative in {@link mainParser#update}.
 	 * @param ctx the parse tree
 	 */
-	void enterUpdate(mainParser.UpdateContext ctx);
+	void enterUdt(mainParser.UdtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#update}.
+	 * Exit a parse tree produced by the {@code Udt}
+	 * labeled alternative in {@link mainParser#update}.
 	 * @param ctx the parse tree
 	 */
-	void exitUpdate(mainParser.UpdateContext ctx);
+	void exitUdt(mainParser.UdtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#simulate}.
+	 * Enter a parse tree produced by the {@code Simp}
+	 * labeled alternative in {@link mainParser#simulate}.
 	 * @param ctx the parse tree
 	 */
-	void enterSimulate(mainParser.SimulateContext ctx);
+	void enterSimp(mainParser.SimpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#simulate}.
+	 * Exit a parse tree produced by the {@code Simp}
+	 * labeled alternative in {@link mainParser#simulate}.
 	 * @param ctx the parse tree
 	 */
-	void exitSimulate(mainParser.SimulateContext ctx);
+	void exitSimp(mainParser.SimpContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#latch}.
+	 * Enter a parse tree produced by the {@code Lat}
+	 * labeled alternative in {@link mainParser#latch}.
 	 * @param ctx the parse tree
 	 */
-	void enterLatch(mainParser.LatchContext ctx);
+	void enterLat(mainParser.LatContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#latch}.
+	 * Exit a parse tree produced by the {@code Lat}
+	 * labeled alternative in {@link mainParser#latch}.
 	 * @param ctx the parse tree
 	 */
-	void exitLatch(mainParser.LatchContext ctx);
+	void exitLat(mainParser.LatContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#assignment_stmt}.
+	 * Enter a parse tree produced by the {@code Asstmt}
+	 * labeled alternative in {@link mainParser#assignment_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterAssignment_stmt(mainParser.Assignment_stmtContext ctx);
+	void enterAsstmt(mainParser.AsstmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#assignment_stmt}.
+	 * Exit a parse tree produced by the {@code Asstmt}
+	 * labeled alternative in {@link mainParser#assignment_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitAssignment_stmt(mainParser.Assignment_stmtContext ctx);
+	void exitAsstmt(mainParser.AsstmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link mainParser#simulate_stmt}.
+	 * Enter a parse tree produced by the {@code Sstmt}
+	 * labeled alternative in {@link mainParser#simulate_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterSimulate_stmt(mainParser.Simulate_stmtContext ctx);
+	void enterSstmt(mainParser.SstmtContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link mainParser#simulate_stmt}.
+	 * Exit a parse tree produced by the {@code Sstmt}
+	 * labeled alternative in {@link mainParser#simulate_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitSimulate_stmt(mainParser.Simulate_stmtContext ctx);
+	void exitSstmt(mainParser.SstmtContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Condition}
 	 * labeled alternative in {@link mainParser#expression}.

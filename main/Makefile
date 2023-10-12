@@ -16,8 +16,8 @@ all:
 mainLexer.java:	main.g4
 	$(antlr4) -visitor main.g4
 
-main.class:	mainLexer.java main.java AST.java Environment.java
-	javac $(classpathoption) $(GENERATED) main.java AST.java Environment.java
+main.class:	mainLexer.java main.java
+	javac $(classpathoption) $(GENERATED) main.java
 
 run:	main.class
 	java $(classpathoption) main helloworld.hw

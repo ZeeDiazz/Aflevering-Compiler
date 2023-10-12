@@ -40,20 +40,19 @@ public class main {
 	//Program p=(Program)astmaker.visit(parseTree);
 
 	System.out.println("Typechecking...");
-	Environment env=new Environment();
+	//Environment env=new Environment();
 	//p.typecheck(env);
 	System.out.println("...ok. Running:");
-	env=new Environment();
+	//env=new Environment();
 	// For evaluation, create an empty environment and run eval:
 	//p.eval(env);
     }
 }
 
 /* Visitor that turns the ANTLR parse tree into more friendly abstract
- * syntax tree (AST). The return type <T> is AST, see AST.java
  */
 
-class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST> {
+/*class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST> {
     public AST visitStart(mainParser.StartContext ctx){
 	List<Program> ps = new ArrayList<Program>();
 	for (mainParser.StmtContext s : ctx.p )
@@ -122,5 +121,5 @@ class ASTMaker extends AbstractParseTreeVisitor<AST> implements mainVisitor<AST>
 	String s=ctx.f.getText();
 	return new ConstString(s.substring(1,s.length()-1));
     }
-}
+}*/
 

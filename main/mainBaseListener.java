@@ -16,121 +16,121 @@ public class mainBaseListener implements mainListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart(mainParser.StartContext ctx) { }
+	@Override public void enterBegin(mainParser.BeginContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart(mainParser.StartContext ctx) { }
+	@Override public void exitBegin(mainParser.BeginContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterHardware(mainParser.HardwareContext ctx) { }
+	@Override public void enterHardwareProg(mainParser.HardwareProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitHardware(mainParser.HardwareContext ctx) { }
+	@Override public void exitHardwareProg(mainParser.HardwareProgContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInput(mainParser.InputContext ctx) { }
+	@Override public void enterIns(mainParser.InsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInput(mainParser.InputContext ctx) { }
+	@Override public void exitIns(mainParser.InsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOutput(mainParser.OutputContext ctx) { }
+	@Override public void enterOuts(mainParser.OutsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOutput(mainParser.OutputContext ctx) { }
+	@Override public void exitOuts(mainParser.OutsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLatches(mainParser.LatchesContext ctx) { }
+	@Override public void enterLats(mainParser.LatsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLatches(mainParser.LatchesContext ctx) { }
+	@Override public void exitLats(mainParser.LatsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUpdate(mainParser.UpdateContext ctx) { }
+	@Override public void enterUdt(mainParser.UdtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUpdate(mainParser.UpdateContext ctx) { }
+	@Override public void exitUdt(mainParser.UdtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimulate(mainParser.SimulateContext ctx) { }
+	@Override public void enterSimp(mainParser.SimpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimulate(mainParser.SimulateContext ctx) { }
+	@Override public void exitSimp(mainParser.SimpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLatch(mainParser.LatchContext ctx) { }
+	@Override public void enterLat(mainParser.LatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLatch(mainParser.LatchContext ctx) { }
+	@Override public void exitLat(mainParser.LatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAssignment_stmt(mainParser.Assignment_stmtContext ctx) { }
+	@Override public void enterAsstmt(mainParser.AsstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAssignment_stmt(mainParser.Assignment_stmtContext ctx) { }
+	@Override public void exitAsstmt(mainParser.AsstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimulate_stmt(mainParser.Simulate_stmtContext ctx) { }
+	@Override public void enterSstmt(mainParser.SstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSimulate_stmt(mainParser.Simulate_stmtContext ctx) { }
+	@Override public void exitSstmt(mainParser.SstmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

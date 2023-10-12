@@ -99,6 +99,18 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class StartContext extends ParserRuleContext {
+		public StartContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_start; }
+	 
+		public StartContext() { }
+		public void copyFrom(StartContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class BeginContext extends StartContext {
 		public TerminalNode EOF() { return getToken(mainParser.EOF, 0); }
 		public HardwareContext hardware() {
 			return getRuleContext(HardwareContext.class,0);
@@ -118,21 +130,18 @@ public class mainParser extends Parser {
 		public SimulateContext simulate() {
 			return getRuleContext(SimulateContext.class,0);
 		}
-		public StartContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_start; }
+		public BeginContext(StartContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterStart(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterBegin(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitStart(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitBegin(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitStart(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitBegin(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -141,6 +150,7 @@ public class mainParser extends Parser {
 		StartContext _localctx = new StartContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_start);
 		try {
+			_localctx = new BeginContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			{
@@ -174,22 +184,31 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class HardwareContext extends ParserRuleContext {
-		public TerminalNode CIRCUITNAME() { return getToken(mainParser.CIRCUITNAME, 0); }
 		public HardwareContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_hardware; }
+	 
+		public HardwareContext() { }
+		public void copyFrom(HardwareContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class HardwareProgContext extends HardwareContext {
+		public TerminalNode CIRCUITNAME() { return getToken(mainParser.CIRCUITNAME, 0); }
+		public HardwareProgContext(HardwareContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterHardware(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterHardwareProg(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitHardware(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitHardwareProg(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitHardware(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitHardwareProg(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -198,6 +217,7 @@ public class mainParser extends Parser {
 		HardwareContext _localctx = new HardwareContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_hardware);
 		try {
+			_localctx = new HardwareProgContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(31);
@@ -219,26 +239,35 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class InputContext extends ParserRuleContext {
+		public InputContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_input; }
+	 
+		public InputContext() { }
+		public void copyFrom(InputContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class InsContext extends InputContext {
 		public Token ins;
 		public List<TerminalNode> ID() { return getTokens(mainParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(mainParser.ID, i);
 		}
-		public InputContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_input; }
+		public InsContext(InputContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterInput(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterIns(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitInput(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitIns(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitInput(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitIns(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -249,6 +278,7 @@ public class mainParser extends Parser {
 		int _la;
 		try {
 			int _alt;
+			_localctx = new InsContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(34);
@@ -276,7 +306,7 @@ public class mainParser extends Parser {
 					_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 				}
 				setState(41);
-				((InputContext)_localctx).ins = match(ID);
+				((InsContext)_localctx).ins = match(ID);
 				}
 				}
 				setState(44); 
@@ -298,25 +328,35 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class OutputContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(mainParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(mainParser.ID, i);
-		}
 		public OutputContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_output; }
+	 
+		public OutputContext() { }
+		public void copyFrom(OutputContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class OutsContext extends OutputContext {
+		public Token outs;
+		public List<TerminalNode> ID() { return getTokens(mainParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(mainParser.ID, i);
+		}
+		public OutsContext(OutputContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterOutput(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterOuts(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitOutput(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitOuts(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitOutput(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitOuts(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -327,6 +367,7 @@ public class mainParser extends Parser {
 		int _la;
 		try {
 			int _alt;
+			_localctx = new OutsContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(46);
@@ -354,7 +395,7 @@ public class mainParser extends Parser {
 					_alt = getInterpreter().adaptivePredict(_input,2,_ctx);
 				}
 				setState(53);
-				match(ID);
+				((OutsContext)_localctx).outs = match(ID);
 				}
 				}
 				setState(56); 
@@ -376,27 +417,36 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class LatchesContext extends ParserRuleContext {
+		public LatchesContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_latches; }
+	 
+		public LatchesContext() { }
+		public void copyFrom(LatchesContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class LatsContext extends LatchesContext {
 		public List<LatchContext> latch() {
 			return getRuleContexts(LatchContext.class);
 		}
 		public LatchContext latch(int i) {
 			return getRuleContext(LatchContext.class,i);
 		}
-		public LatchesContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_latches; }
+		public LatsContext(LatchesContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterLatches(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterLats(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitLatches(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitLats(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitLatches(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitLats(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -407,6 +457,7 @@ public class mainParser extends Parser {
 		int _la;
 		try {
 			int _alt;
+			_localctx = new LatsContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(58);
@@ -456,27 +507,36 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class UpdateContext extends ParserRuleContext {
+		public UpdateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_update; }
+	 
+		public UpdateContext() { }
+		public void copyFrom(UpdateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class UdtContext extends UpdateContext {
 		public List<Assignment_stmtContext> assignment_stmt() {
 			return getRuleContexts(Assignment_stmtContext.class);
 		}
 		public Assignment_stmtContext assignment_stmt(int i) {
 			return getRuleContext(Assignment_stmtContext.class,i);
 		}
-		public UpdateContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_update; }
+		public UdtContext(UpdateContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterUpdate(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterUdt(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitUpdate(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitUdt(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitUpdate(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitUdt(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -487,6 +547,7 @@ public class mainParser extends Parser {
 		int _la;
 		try {
 			int _alt;
+			_localctx = new UdtContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(70);
@@ -536,27 +597,36 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class SimulateContext extends ParserRuleContext {
+		public SimulateContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_simulate; }
+	 
+		public SimulateContext() { }
+		public void copyFrom(SimulateContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SimpContext extends SimulateContext {
 		public List<Simulate_stmtContext> simulate_stmt() {
 			return getRuleContexts(Simulate_stmtContext.class);
 		}
 		public Simulate_stmtContext simulate_stmt(int i) {
 			return getRuleContext(Simulate_stmtContext.class,i);
 		}
-		public SimulateContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_simulate; }
+		public SimpContext(SimulateContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterSimulate(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterSimp(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitSimulate(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitSimp(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitSimulate(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitSimp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -567,6 +637,7 @@ public class mainParser extends Parser {
 		int _la;
 		try {
 			int _alt;
+			_localctx = new SimpContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(82);
@@ -616,25 +687,36 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class LatchContext extends ParserRuleContext {
-		public List<TerminalNode> ID() { return getTokens(mainParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(mainParser.ID, i);
-		}
 		public LatchContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_latch; }
+	 
+		public LatchContext() { }
+		public void copyFrom(LatchContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class LatContext extends LatchContext {
+		public Token lat1;
+		public Token lat2;
+		public List<TerminalNode> ID() { return getTokens(mainParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(mainParser.ID, i);
+		}
+		public LatContext(LatchContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterLatch(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterLat(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitLatch(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitLat(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitLatch(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitLat(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -644,10 +726,11 @@ public class mainParser extends Parser {
 		enterRule(_localctx, 14, RULE_latch);
 		int _la;
 		try {
+			_localctx = new LatContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(94);
-			match(ID);
+			((LatContext)_localctx).lat1 = match(ID);
 			setState(98);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -679,7 +762,7 @@ public class mainParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(108);
-			match(ID);
+			((LatContext)_localctx).lat2 = match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -695,26 +778,35 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Assignment_stmtContext extends ParserRuleContext {
+		public Assignment_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_assignment_stmt; }
+	 
+		public Assignment_stmtContext() { }
+		public void copyFrom(Assignment_stmtContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class AsstmtContext extends Assignment_stmtContext {
 		public Token var;
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public TerminalNode ID() { return getToken(mainParser.ID, 0); }
-		public Assignment_stmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_assignment_stmt; }
+		public AsstmtContext(Assignment_stmtContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterAssignment_stmt(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterAsstmt(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitAssignment_stmt(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitAsstmt(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitAssignment_stmt(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitAsstmt(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -724,10 +816,11 @@ public class mainParser extends Parser {
 		enterRule(_localctx, 16, RULE_assignment_stmt);
 		int _la;
 		try {
+			_localctx = new AsstmtContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(110);
-			((Assignment_stmtContext)_localctx).var = match(ID);
+			((AsstmtContext)_localctx).var = match(ID);
 			setState(114);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -775,24 +868,33 @@ public class mainParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class Simulate_stmtContext extends ParserRuleContext {
-		public Token var;
-		public TerminalNode BINARY() { return getToken(mainParser.BINARY, 0); }
-		public TerminalNode ID() { return getToken(mainParser.ID, 0); }
 		public Simulate_stmtContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_simulate_stmt; }
+	 
+		public Simulate_stmtContext() { }
+		public void copyFrom(Simulate_stmtContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class SstmtContext extends Simulate_stmtContext {
+		public Token var;
+		public TerminalNode BINARY() { return getToken(mainParser.BINARY, 0); }
+		public TerminalNode ID() { return getToken(mainParser.ID, 0); }
+		public SstmtContext(Simulate_stmtContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).enterSimulate_stmt(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).enterSstmt(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof mainListener ) ((mainListener)listener).exitSimulate_stmt(this);
+			if ( listener instanceof mainListener ) ((mainListener)listener).exitSstmt(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitSimulate_stmt(this);
+			if ( visitor instanceof mainVisitor ) return ((mainVisitor<? extends T>)visitor).visitSstmt(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -802,10 +904,11 @@ public class mainParser extends Parser {
 		enterRule(_localctx, 18, RULE_simulate_stmt);
 		int _la;
 		try {
+			_localctx = new SstmtContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(126);
-			((Simulate_stmtContext)_localctx).var = match(ID);
+			((SstmtContext)_localctx).var = match(ID);
 			setState(130);
 			_errHandler.sync(this);
 			_la = _input.LA(1);

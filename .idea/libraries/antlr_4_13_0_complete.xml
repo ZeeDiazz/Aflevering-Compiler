@@ -2,6 +2,7 @@
   <library name="antlr-4.13.0-complete">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/impl-after-lec/antlr-4.13.0-complete.jar!/" />
+      <root url="jar://$PROJECT_DIR$/main/antlr-4.13.0-complete.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -17,70 +17,70 @@ public class mainBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements m
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStart(mainParser.StartContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBegin(mainParser.BeginContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHardware(mainParser.HardwareContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHardwareProg(mainParser.HardwareProgContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitInput(mainParser.InputContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIns(mainParser.InsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitOutput(mainParser.OutputContext ctx) { return visitChildren(ctx); }
+	@Override public T visitOuts(mainParser.OutsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLatches(mainParser.LatchesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLats(mainParser.LatsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUpdate(mainParser.UpdateContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUdt(mainParser.UdtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSimulate(mainParser.SimulateContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimp(mainParser.SimpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLatch(mainParser.LatchContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLat(mainParser.LatContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssignment_stmt(mainParser.Assignment_stmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAsstmt(mainParser.AsstmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSimulate_stmt(mainParser.Simulate_stmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSstmt(mainParser.SstmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
