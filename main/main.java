@@ -59,6 +59,14 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
                 "<scripttype=\"text/javascript\"id=\"MathJax-script\"" +
                 "asyncsrc=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\">" +
                 "</script></head><body>");
+        String h = visit(ctx.hardware());
+        String i = visit(ctx.input());
+        String o = visit(ctx.latches());
+        String l = visit(ctx.latches());
+        String u = visit(ctx.update());
+        String s = visit(ctx.simulate());
+
+
         return visitChildren(ctx);
     }
 
@@ -106,7 +114,7 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
         System.out.println("<h2>" + test + "</h2>");
 
-        System.out.println(ctx.getStop().getText());
+        System.out.println(ctx.stop.getText());
 
         return visitChildren(ctx);
     }
