@@ -3,6 +3,7 @@ import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class main {
     public static void main(String[] args) throws IOException {
@@ -43,6 +44,8 @@ public class main {
         //Environment env=new Environment();
         //p.typecheck(env);
         //env=new Environment();
+
+
     }
 }
 
@@ -54,28 +57,27 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
     public String visitBegin(HDL0Parser.BeginContext ctx) {
         String html = ("<!DOCTYPE html>\n");
 
-        html += ("<html><head><title> " + ctx.hardware().stop.getText() + "</title\n");
+        html += ("<html><head><title> " + ctx.h.stop.getText() + "</title\n");
 
         html += ("<scriptsrc=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>" +
                 "<scripttype=\"text/javascript\"id=\"MathJax-script\"" +
                 "asyncsrc=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\">" +
                 "</script></head><body>\n");
 
-        String h = visit(ctx.hardware());
-        String i = visit(ctx.input());
-        String o = visit(ctx.output());
-        String l = visit(ctx.latches());
-        String u = visit(ctx.update());
-        String s = visit(ctx.simulate());
+        String h = visit(ctx.h);
+        String i = visit(ctx.i);
+        String o = visit(ctx.o);
+        String l = visit(ctx.l);
+        String u = visit(ctx.u);
+        String s = visit(ctx.s);
 
 
-        return html + h + "\n" + i + "\n" + o + "\n" + l + "\n" + u + "\n";
+        return html + "\n" + h + "\n" + i + "\n" + o + "\n" + l + "\n" + u + "\n" + s + "\n" + "\n</body></html>";
     }
 
     @Override
     public String visitHardwareProg(HDL0Parser.HardwareProgContext ctx) {
-        String test = "<h1>" + ctx.CIRCUITNAME().getText() + "</h1>\n";
-        return test;
+        return "<h1> " + ctx.CIRCUITNAME().getText() + " </h1>\n";
     }
 
     @Override
@@ -106,131 +108,85 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
     @Override
     public String visitUdt(HDL0Parser.UdtContext ctx) {
         String udt = "<h2> Updates </h2>\n";
-        //for(var assignment_stmt: ctx.Udt){
+        String begin = visitChildren(ctx);
+        String beginFirst = "";
 
-        //}
-        udt += visit(ctx);
+        if(begin.contains("=")){
+            begin = begin.replace("=","");
+            beginFirst = begin.substring(0,10);
+            begin = begin.substring(11);
+        }
 
-
-        return udt + "<br>" + "\n";
+        return udt + beginFirst + "&larr;"  + begin + "<br>" + "\n";
     }
 
     @Override
     public String visitSimp(HDL0Parser.SimpContext ctx) {
-        return null;
+        String udt = "<h2> Simulation inputs </h2>\n";
+        return udt + visitChildren(ctx) + ")";
     }
 
     @Override
     public String visitLat(HDL0Parser.LatContext ctx) {
-        return null;
+        String lat1 = ctx.lat1.getText();
+        String lat2 = ctx.lat2.getText();
+        return lat1 + "&rarr;" + lat2;
     }
 
     @Override
     public String visitAsstmt(HDL0Parser.AsstmtContext ctx) {
-        //String ass = ctx.var.getText();
-        //ass += "&laar;";
-        //ass += ctx.exception;
-        return null;
+        String var = ctx.var.getText();
+        String exp = visit(ctx.expression());
+        return var + " = " + exp;
+
     }
 
     @Override
     public String visitSstmt(HDL0Parser.SstmtContext ctx) {
-        return null;
+        String html = "<b>";
+        String start = ctx.var.getText();
+        String number = ctx.BINARY().getText();
+        html += start + "</b>: "+ number+"<br>";
+
+        return html;
     }
 
     @Override
     public String visitCondition(HDL0Parser.ConditionContext ctx) {
-        return null;
+        String e = visit(ctx.e);
+        return "\\(" + e + "\\)";
     }
 
     @Override
     public String visitVar(HDL0Parser.VarContext ctx) {
-        return null;
+        String signalName = ctx.var.getText();
+        // Translate the signal name to LaTeX format
+        String latexSignalName = signalName;
+        if(signalName.contains(" ")) {
+            latexSignalName = "\\mathrm{" + signalName + "}";
+        }
+        return latexSignalName;
     }
 
     @Override
     public String visitOG(HDL0Parser.OGContext ctx) {
-        return null;
+        String e1 = visit(ctx.e1);
+        String e2 = visit(ctx.e2);
+
+        return "(" + e1 + " \\wedge " + e2 + ")";
     }
 
     @Override
     public String visitNegate(HDL0Parser.NegateContext ctx) {
-        return null;
+        String e = visit(ctx.e);
+        return "(\\neg(" + e + ")";
     }
 
     @Override
     public String visitEller(HDL0Parser.EllerContext ctx) {
-        return null;
+        String e1 = visit(ctx.e1);
+        String e2 = visit(ctx.e2);
+        return "(" + e1 + " \\vee " + e2 + ")";
     }
-
-
-    /*public AST visitStart(mainParser.StartContext ctx){
-	List<Program> ps = new ArrayList<Program>();
-	for (mainParser.StmtContext s : ctx.p )
-	    ps.add((Program) visit(s));
-	return new Sequence(ps);
-    };
-    public AST visitSingle(mainParser.SingleContext ctx)
-    {
-	return visit(ctx.s);
-    };
-    public AST visitBlock(mainParser.BlockContext ctx){
-	List<Program> ps = new ArrayList<Program>();
-	for (mainParser.StmtContext s : ctx.p )
-	    ps.add((Program) visit(s));
-	return new Sequence(ps);
-    };
-    public AST visitAssign(mainParser.AssignContext ctx){
-	return new Assignment(ctx.x.getText(),(Exp) visit(ctx.e));
-    };
-    public AST visitWhile(mainParser.WhileContext ctx){
-	return new While((Condition) visit(ctx.c), (Program) visit(ctx.p));
-    };
-    public AST visitOutput(mainParser.OutputContext ctx){
-	return new Output((Exp) visit(ctx.e));
-	
-    };
-    public AST visitIf(mainParser.IfContext ctx){
-	return new If((Condition) visit(ctx.c),
-		      (Program) visit(ctx.p1),
-		      (Program) visit(ctx.p2));
-    };
-    public AST visitGreater(mainParser.GreaterContext ctx){
-	return new Greater((Exp) visit(ctx.e1), (Exp) visit(ctx.e2)); 
-    };
-    public AST visitEqual(mainParser.EqualContext ctx){
-	return new Equal((Exp) visit(ctx.e1), (Exp) visit(ctx.e2));
-    };
-    public AST visitUnequal(mainParser.UnequalContext ctx){
-	System.err.println("visitUnequal: Implement me!");
-	System.exit(-1);
-	return null;
-    };
-    public AST visitAdd(mainParser.AddContext ctx){
-	if (ctx.op.getText().equals("+"))
-	    return new Addition((Exp) visit(ctx.e1),
-				(Exp) visit(ctx.e2));
-	else return new Subtraction((Exp) visit(ctx.e1), (Exp) visit(ctx.e2));
-    };
-    public AST visitMult(mainParser.MultContext ctx){
-	if (ctx.op.getText().equals("*"))
-	    return new Multiplication((Exp) visit(ctx.e1), (Exp) visit(ctx.e2));
-	else return new Division((Exp) visit(ctx.e1), (Exp) visit(ctx.e2));
-    };
-    public AST visitVar(mainParser.VarContext ctx){
-
-
-	return new Variable(ctx.x.getText());
-    };
-    public AST visitConst(mainParser.ConstContext ctx){
-	return new Constant(Integer.valueOf(ctx.i.getText()));
-    };
-    public AST visitParen(mainParser.ParenContext ctx){
-	return visit(ctx.e);
-    };
-    public AST visitString(mainParser.StringContext ctx){
-	String s=ctx.f.getText();
-	return new ConstString(s.substring(1,s.length()-1));
-    }*/
 }
 

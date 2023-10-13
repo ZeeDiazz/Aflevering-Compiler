@@ -1,6 +1,6 @@
 grammar HDL0;
 
-start : (hardware input output latches update simulate) EOF # Begin;
+start : (h=hardware+ i=input+ o=output+ l=latches+ u=update+ s=simulate+) EOF # Begin;
 
 hardware : '.hardware ' CIRCUITNAME # HardwareProg;
 input : '.inputs' (' '*? ins=ID)+   # Ins;

@@ -20,10 +20,10 @@ main.class:	HDL0Lexer.java main.java
 	javac $(classpathoption) $(GENERATED) main.java
 
 run:	main.class
-	java $(classpathoption) main helloworld.hw
+	java $(classpathoption) main 01-hello-world.hw
 
-grun:	HDL0Lexer.class helloworld.hw
-	$(grun) main start -gui -tokens helloworld.hw
+grun:	HDL0Lexer.class 01-hello-world.hw
+	$(grun) main start -gui -tokens 01-hello-world.hw
 
 clean:
 	rm $(GENERATED) *.class HDL0.interp HDL0Lexer.interp HDL0Lexer.tokens
