@@ -1,11 +1,11 @@
 grammar HDL0;
 
-start : (h=hardware+ i=input+ o=output+ l=latches+ u=update+ s=simulate+) EOF # Begin;
+start : (hardware input output latches update simulate) EOF # Begin;
 
 hardware : '.hardware ' CIRCUITNAME # HardwareProg;
 input : '.inputs' (' '*? ins=ID)+   # Ins;
 output : '.outputs' (' '*? outs=ID)+    # Outs;
-latches : '.latches' ' '*? latch+   # Lats;
+latches : '.latches' ' '*? laty=latch+   # Lats;
 update : '.update' ' '*? assignment_stmt+   # Udt;
 simulate : '.simulate' ' '*? simulate_stmt+ # Simp;
 
@@ -28,4 +28,4 @@ CIRCUITNAME : [a-z]+;
 ID : [A-Z]+[A-Za-z0-9]+;
 BINARY : [01]+;
 
-WHITESPACE : [ \n\t]+ -> skip;
+WHITESPACE : [ \n\r\t]+ -> skip;

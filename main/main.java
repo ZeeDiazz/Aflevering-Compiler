@@ -57,19 +57,19 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
     public String visitBegin(HDL0Parser.BeginContext ctx) {
         String html = ("<!DOCTYPE html>\n");
 
-        html += ("<html><head><title> " + ctx.h.stop.getText() + "</title\n");
+        html += ("<html><head><title> " + ctx.hardware().stop.getText() + " </title>\n");
 
         html += ("<scriptsrc=\"https://polyfill.io/v3/polyfill.min.js?features=es6\"></script>" +
                 "<scripttype=\"text/javascript\"id=\"MathJax-script\"" +
                 "asyncsrc=\"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js\">" +
                 "</script></head><body>\n");
 
-        String h = visit(ctx.h);
-        String i = visit(ctx.i);
-        String o = visit(ctx.o);
-        String l = visit(ctx.l);
-        String u = visit(ctx.u);
-        String s = visit(ctx.s);
+        String h = visit(ctx.hardware());
+        String i = visit(ctx.input());
+        String o = visit(ctx.output());
+        String l = visit(ctx.latches());
+        String u = visit(ctx.update());
+        String s = visit(ctx.simulate());
 
 
         return html + "\n" + h + "\n" + i + "\n" + o + "\n" + l + "\n" + u + "\n" + s + "\n" + "\n</body></html>";
@@ -82,8 +82,10 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitIns(HDL0Parser.InsContext ctx) {
-        String ins = "<h2> Input </h2>\n";
-        ins += ctx.ins.getText();
+        StringBuilder ins = new StringBuilder("<h2> Input </h2>\n");
+        for (var i: ctx.ID()) {
+            ins.append(i.getText()).append(" ");
+        }
         return ins + "\n";
     }
 
@@ -100,13 +102,17 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitLats(HDL0Parser.LatsContext ctx) {
-        String lats = "<h2> Latches </h2>\n";
-        lats += ctx.latch(0).getText();
-
-        if(lats.contains("->")){
-            lats = lats.replace(" -> ","&rarr;");
+        StringBuilder lats = new StringBuilder("<h2> Latches </h2>\n");
+        String latch;
+        for (HDL0Parser.LatchContext latchContext: ctx.latch()){
+            latch = visit(latchContext);
+            if(latch.contains("->")){
+                latch = latch.replace(" -> ","&rarr;");
+            }
+            lats.append(latch).append("\n");
         }
-        return lats + "<br>" + "\n";
+
+        return lats + "\n";
     }
 
     @Override
@@ -122,7 +128,7 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
     @Override
     public String visitSimp(HDL0Parser.SimpContext ctx) {
         String udt = "<h2> Simulation inputs </h2>\n";
-        return udt + visitChildren(ctx) + ")";
+        return udt + visitChildren(ctx);
     }
 
     @Override
@@ -134,9 +140,6 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitAsstmt(HDL0Parser.AsstmtContext ctx) {
-        /*String var = ctx.asig.getText();
-        String exp = visit(ctx.expression());
-        return var + " = " + exp;*/
         String var = ctx.asig.getText();
         String exp = visit(ctx.expression());
 
@@ -145,7 +148,6 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
         } else {
             return var + "&rarr;" + exp;
         }
-
     }
 
     @Override
