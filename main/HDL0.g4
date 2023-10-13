@@ -11,7 +11,7 @@ simulate : '.simulate' ' '*? simulate_stmt+ # Simp;
 
 latch : lat1=ID ' '* '->' ' '* lat2=ID  # Lat;
 
-assignment_stmt : var=ID ' '* '=' ' '* expression   # Asstmt;
+assignment_stmt : asig=ID ' '* '=' ' '* expression   # Asstmt;
 
 simulate_stmt : var=ID ' '* '=' ' '* BINARY # Sstmt;
 

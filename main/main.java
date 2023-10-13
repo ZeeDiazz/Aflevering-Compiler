@@ -89,8 +89,12 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitOuts(HDL0Parser.OutsContext ctx) {
-        String outs = "<h2> Output </h2>\n";
-        outs += ctx.outs.getText();
+        StringBuilder outs = new StringBuilder("<h2> Output </h2>\n");
+        for (var i: ctx.ID()) {
+            outs.append(i.getText());
+            outs.append(" ");
+        }
+
         return outs + "\n";
     }
 
@@ -107,17 +111,12 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitUdt(HDL0Parser.UdtContext ctx) {
-        String udt = "<h2> Updates </h2>\n";
-        String begin = visitChildren(ctx);
-        String beginFirst = "";
-
-        if(begin.contains("=")){
-            begin = begin.replace("=","");
-            beginFirst = begin.substring(0,10);
-            begin = begin.substring(11);
+        StringBuilder udt = new StringBuilder("<h2> Updates </h2>\n");
+        for (HDL0Parser.Assignment_stmtContext assignmentStmt : ctx.assignment_stmt()) {
+            String assignment = visit(assignmentStmt);
+            udt.append(assignment).append("<br>\n");
         }
-
-        return udt + beginFirst + "&larr;"  + begin + "<br>" + "\n";
+        return udt.toString();
     }
 
     @Override
@@ -135,9 +134,17 @@ class prettyprint extends AbstractParseTreeVisitor<String> implements HDL0Visito
 
     @Override
     public String visitAsstmt(HDL0Parser.AsstmtContext ctx) {
-        String var = ctx.var.getText();
+        /*String var = ctx.asig.getText();
         String exp = visit(ctx.expression());
-        return var + " = " + exp;
+        return var + " = " + exp;*/
+        String var = ctx.asig.getText();
+        String exp = visit(ctx.expression());
+
+        if (exp.contains("\\neg(")) {
+            return var + "&larr;" + exp + ")";
+        } else {
+            return var + "&rarr;" + exp;
+        }
 
     }
 
