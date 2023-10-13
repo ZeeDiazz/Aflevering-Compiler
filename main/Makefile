@@ -22,7 +22,7 @@ main.class:	HDL0Lexer.java main.java
 run:	main.class
 	java $(classpathoption) main 01-hello-world.hw
 
-grun:	HDL0Lexer.class01-hello-world.hw
+grun:	HDL0Lexer.class 01-hello-world.hw
 	$(grun) main start -gui -tokens 01-hello-world.hw
 
 clean:
