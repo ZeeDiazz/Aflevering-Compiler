@@ -26,4 +26,4 @@ grun:	HDL0Lexer.class 03-trafiklys.hw
 	$(grun) main start -gui -tokens 03-trafiklys.hw
 
 clean:
-	rm $(GENERATED) *.class HDL0.interp HDL0Lexer.interp HDL0Lexer.tokens
+	rm $(GENERATED) *.class HDL0.interp HDL0Lexer.interp HDL0Lexer.tokens HDL0.tokens
