@@ -2,6 +2,8 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -38,13 +40,20 @@ public class main {
         prettyprint astmaker = new prettyprint();
         String s = astmaker.visit(parseTree);
         System.out.println(s);
-        //ASTMaker astmaker = new ASTMaker();
-        //Program p=(Program)astmaker.visit(parseTree);
 
-        //Environment env=new Environment();
-        //p.typecheck(env);
-        //env=new Environment();
+        try {
+            FileWriter file = new FileWriter("index.html");
 
+            BufferedWriter outputfile = new BufferedWriter(file);
+
+            outputfile.write(s);
+
+            outputfile.close();
+        }
+
+        catch (Exception e) {
+            e.getStackTrace();
+        }
 
     }
 }
